@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Build and test
 
 on:
   push:
@@ -12,23 +12,26 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: "Checkout project from repo"
+      - name: Clone GitHub repository on the runner machine
         uses: actions/checkout@v4
 
-      - name: "Use Node.js 20"
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: "Restore packages"
-        run: npm install
+      - name: Install Node packages
+        run: npm ci
 
-      - name: "Running server"
+      - name: Run Integration Tests
+        run: npm test
+
+      - name: Running server
         run: npm run server &
 
-      - name: "Running client"
+      - name: Running client
         run: npm run start &
 
-      - name: "Running tests"
+      - name: Running tests
         run: npm run test
