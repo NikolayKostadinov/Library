@@ -17,5 +17,19 @@
     "devDependencies": {
         "http-server": "^14.1.1",
         "@playwright/test": "1.44.1"
+    },
+    "config": {
+        "dev": {
+            "apiUrl": "http://localhost:3030",
+            "debug": true
+        },
+        "prod": {
+            "apiUrl": "https://library-del0.onrender.com",
+            "debug": false
+        },
+        "test": {
+            "apiUrl": "http://localhost:3030",
+            "debug": true
+        }
     }
 }
