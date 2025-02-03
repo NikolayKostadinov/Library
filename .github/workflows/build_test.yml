@@ -24,14 +24,14 @@ jobs:
       - name: Install Node packages
         run: npm ci
 
-#      - name: Download new browsers
-#        run: npx playwright install
-
       - name: Running server
         run: npm run server &
 
       - name: Running client
         run: npm run start &
+
+      - name: Download new browsers
+        run: npx playwright install
 
       - name: Running tests
         run: npm run test
