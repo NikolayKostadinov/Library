@@ -24,8 +24,8 @@ jobs:
       - name: Install Node packages
         run: npm ci
 
-      - name: Run Integration Tests
-        run: npm test
+      - name: Download new browsers
+        run: npx playwright install
 
       - name: Running server
         run: npm run server &
