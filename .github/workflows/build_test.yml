@@ -21,11 +21,11 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-#      - name: Install Node packages
-#        run: npm ci
+      - name: Install Node packages
+        run: npm ci
 
-      - name: Download new browsers
-        run: npx playwright install
+#      - name: Download new browsers
+#        run: npx playwright install
 
       - name: Running server
         run: npm run server &
