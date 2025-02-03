@@ -44,7 +44,8 @@ function getOptions(method = 'get', body) {
 
 export async function getEnvironmentSettings() {
     const packageJson = await fetch('./package.json').then(res => res.json());
-    const env = window.location.hostname.includes('.onrender.com') ? 'prod' : 'dev';
+    console.log(window.location.hostname);
+    const env = window.location.hostname.includes('onrender') ? 'prod' : 'dev';
     return packageJson.config[env] || {};
 }
 
