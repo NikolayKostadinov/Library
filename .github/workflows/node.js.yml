@@ -18,6 +18,6 @@ jobs:
       with:
         node-version: 20
         cache: 'npm'
-    - run: npm run server $
-    - run: npm run start
+    - run: npm run server &
+    - run: npm run start &
     - run: npm run test
