@@ -24,8 +24,8 @@ jobs:
       - name: Install Node packages
         run: npm ci
 
-      - name: Setup environment to 'dev'
-        run: echo "export const settings = {host:\"http://localhost:3030\"}" > src/config.js
+      - name: Replace the config settings for dev
+        run: echo "export const settings = { host:\"http://localhost:3030\" };" > src/config.js
 
       - name: Running server
         run: npm run server &
@@ -55,10 +55,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup environment to 'prod'
-        run: echo "export const settings = {host:\"https://library-del0.onrender.com\"}" > src/config.js
-
       - uses: JorgeLNJunior/render-deploy@v1.4.4
         with:
           service_id: ${{ secrets.MY_RENDER_FRONTEND_ID }}

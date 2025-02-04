@@ -1,9 +1,6 @@
-import * as config from '/src/config.js';
 import * as api from './api.js';
 
-const env = await api.getEnvironmentSettings();
-const host = config?.settings?.host || "http://localhost:3030";
-api.settings.host = host;
+const host = api.settings.host
 
 export const login = api.login;
 export const register = api.register;
