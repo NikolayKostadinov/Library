@@ -1,6 +1,5 @@
-export const settings = {
-    host: ''
-};
+import * as config from '../config.js';
+export const settings = config.settings;
 
 async function request(url, options) {
     try {
@@ -42,13 +41,6 @@ function getOptions(method = 'get', body) {
     return options;
 }
 
-export async function getEnvironmentSettings() {
-    const packageJson = await fetch('./package.json').then(res => res.json());
-    console.log(window.location.hostname);
-    const env = window.location.hostname.includes('onrender') ? 'prod' : 'dev';
-    return packageJson.config[env] || {};
-}
-
 export async function get(url) {
     return await request(url, getOptions());
 }
@@ -67,7 +59,7 @@ export async function del(url) {
 
 
 export async function login(email, password) {
-    const result = await post(settings.host + '/users/login', {email, password});
+    const result = await post(settings.host + '/users/login', { email, password });
 
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('authToken', result.accessToken);
@@ -76,7 +68,7 @@ export async function login(email, password) {
 }
 
 export async function register(email, password) {
-    const result = await post(settings.host + '/users/register', {email, password});
+    const result = await post(settings.host + '/users/register', { email, password });
 
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('authToken', result.accessToken);

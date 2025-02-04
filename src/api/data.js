@@ -1,9 +1,6 @@
-import {getEnvironmentSettings, settings} from "./api.js";
 import * as api from './api.js';
 
-const env = await api.getEnvironmentSettings();
-const host = "http://localhost:3030" //env.apiUrl;
-api.settings.host = host;
+const host = api.settings.host;
 
 export const login = api.login;
 export const register = api.register;
