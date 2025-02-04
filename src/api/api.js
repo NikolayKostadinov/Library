@@ -1,5 +1,7 @@
 import * as config from '../config.js';
-export const settings = config.settings;
+
+const url = window.location.href;
+export const settings = url.includes('localhost') ? {host: 'http://localhost:3030'} : config.settings;
 
 async function request(url, options) {
     try {
@@ -59,7 +61,7 @@ export async function del(url) {
 
 
 export async function login(email, password) {
-    const result = await post(settings.host + '/users/login', { email, password });
+    const result = await post(settings.host + '/users/login', {email, password});
 
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('authToken', result.accessToken);
@@ -68,7 +70,7 @@ export async function login(email, password) {
 }
 
 export async function register(email, password) {
-    const result = await post(settings.host + '/users/register', { email, password });
+    const result = await post(settings.host + '/users/register', {email, password});
 
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('authToken', result.accessToken);
