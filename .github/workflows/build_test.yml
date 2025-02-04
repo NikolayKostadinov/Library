@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node packages
-        run: npm ci
+        run: npm install
 
       - name: Replace the config settings for dev
         run: echo "export const settings = { host:\"http://localhost:3030\" };" > src/config.js
