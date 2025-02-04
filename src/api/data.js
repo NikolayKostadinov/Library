@@ -1,8 +1,8 @@
-import * as config from '/src/config';
+import * as config from '/src/config.js';
 import * as api from './api.js';
 
 const env = await api.getEnvironmentSettings();
-const host = config.settings.host || "http://localhost:3030";
+const host = config?.settings?.host || "http://localhost:3030";
 api.settings.host = host;
 
 export const login = api.login;
