@@ -11,7 +11,7 @@ import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
 import { profilePage } from './views/profile.js';
 
-
+const port = 3000;
 const main = document.querySelector('main');
 setUserNav();
 document.getElementById('logoutBtn').addEventListener('click', logout);
