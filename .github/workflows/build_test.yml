@@ -39,7 +39,7 @@ jobs:
       - name: Running tests
         run: npm run test
 
-  deploy_server:
+  deploy_server_backend:
     needs: build_test
     runs-on: ubuntu-latest
     steps:
@@ -50,6 +50,21 @@ jobs:
 
       - uses: JorgeLNJunior/render-deploy@v1.4.4
         with:
-          service_id: ${{ secrets.MY_RENDER_SERVER_ID }}
+          service_id: ${{ secrets.MY_RENDER_BACKEND_ID }}
+          api_key: ${{ secrets.MY_RENDER_SERVER_API_KEY }}
+          wait_deploy: true
+
+  deploy_server_frontend:
+    needs: deploy_server_backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup environment to 'prod'
+        run: echo "export const settings = {host:\"https://library-del0.onrender.com\"}" > src/config.js
+
+      - uses: JorgeLNJunior/render-deploy@v1.4.4
+        with:
+          service_id: ${{ secrets.MY_RENDER_FRONTEND_ID }}
           api_key: ${{ secrets.MY_RENDER_SERVER_API_KEY }}
           wait_deploy: true
